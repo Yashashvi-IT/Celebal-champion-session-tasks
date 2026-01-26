@@ -1,0 +1,11 @@
+--source destination task
+
+SELECT
+    LEAST(source, destination) AS source,
+    GREATEST(source, destination) AS destination,
+    distance
+FROM routes
+GROUP BY
+    LEAST(source, destination),
+    GREATEST(source, destination),
+    distance;

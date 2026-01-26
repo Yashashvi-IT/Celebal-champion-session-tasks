@@ -1,0 +1,30 @@
+--second max salary (without using cte)
+
+SELECT department, salary
+FROM (
+    SELECT department,
+           salary,
+           DENSE_RANK() OVER (
+               PARTITION BY department
+               ORDER BY salary DESC
+           ) AS rnk
+    FROM employee
+) t
+WHERE rnk = 2;
+
+
+--second max salary (using cte)
+
+WITH salary_rank AS (
+    SELECT
+        department,
+        salary,
+        DENSE_RANK() OVER (
+            PARTITION BY department
+            ORDER BY salary DESC
+        ) AS rnk
+    FROM employee
+)
+SELECT department, salary
+FROM salary_rank
+WHERE rnk = 2;
