@@ -1,0 +1,5 @@
+--count no. of a's in given string
+
+SELECT str,
+       LEN(str) - LEN(REPLACE(LOWER(str), 'a', '')) AS a_count
+FROM table_name;
