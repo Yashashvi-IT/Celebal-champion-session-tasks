@@ -1,0 +1,36 @@
+--Print 1 to 5
+
+WITH RECURSIVE nums AS (
+    SELECT 1 AS n        
+    UNION ALL
+    SELECT n + 1         
+    FROM nums
+    WHERE n < 5          
+)
+SELECT n FROM nums;
+
+--Fibonnaci series
+
+WITH RECURSIVE fib AS (
+    SELECT 0 AS a, 1 AS b   
+    UNION ALL
+SELECT b, a + b
+    FROM fib
+    WHERE b <= 21
+)
+SELECT a FROM fib;
+
+
+--Table of 2
+
+WITH RECURSIVE table2 AS (
+    SELECT 1 AS n, 2 AS result
+UNION ALL
+ SELECT n + 1, 2 * (n + 1)
+    FROM table2
+    WHERE n < 10
+)
+SELECT result FROM table2;
+
+
+
